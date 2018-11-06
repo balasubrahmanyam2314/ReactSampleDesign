@@ -4,22 +4,163 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import Category from './components/home/Category';
-import Category1 from './components/home/Category1';
-import ListItem from './components/home/list-item';
+import Card from './components/home/Card';
+import Section from './components/home/section';
 
-export default class HomeTab extends Component {
+type Props = {};
+export default class HomeTab extends Component<Props> {
   static navigationOptions = {
     tabBarIcon: ({tintColor}) => (
       <Icon name="ios-home" size={25} style={{color: tintColor}} />
     ),
   };
+
+  constructor () {
+    super ();
+    this.state = {
+      data: {},
+    };
+
+    // Set dummy data for result
+    this.state.data = {
+      cards: [
+        {
+          id: '1',
+          cardImage: 'https://picsum.photos/300/200?image=0',
+          cardName: 'kjwhenwe ehwfwe uweifwbe wegfiwebf egfw',
+        },
+        {
+          id: '2',
+          cardImage: 'https://picsum.photos/300/200?image=30',
+          cardName: 'kjwhenwe ehwfwe uweifwbe wegfiwebf egfw',
+        },
+        {
+          id: '3',
+          cardImage: 'https://picsum.photos/300/200?image=90',
+          cardName: 'kjwhenwe ehwfwe uweifwbe wegfiwebf egfw',
+        },
+        {
+          id: '4',
+          cardImage: 'https://picsum.photos/300/200?image=29',
+          cardName: 'kjwhenwe ehwfwe uweifwbe wegfiwebf egfw',
+        },
+        {
+          id: '5',
+          cardImage: 'https://picsum.photos/300/200?image=52',
+          cardName: 'kjwhenwe ehwfwe uweifwbe wegfiwebf egfw',
+        },
+        {
+          id: '6',
+          cardImage: 'https://picsum.photos/300/200?image=49',
+          cardName: 'kjwhenwe ehwfwe uweifwbe wegfiwebf egfw',
+        },
+      ],
+      recent_trends: [
+        {
+          id: '7',
+          thumbNail: 'https://picsum.photos/200/300?image=12',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '8',
+          thumbNail: 'https://picsum.photos/200/300?image=18',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '9',
+          thumbNail: 'https://picsum.photos/200/300?image=30',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '10',
+          thumbNail: 'https://picsum.photos/200/300?image=137',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '11',
+          thumbNail: 'https://picsum.photos/200/300?image=123',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '12',
+          thumbNail: 'https://picsum.photos/200/300?image=172',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '13',
+          thumbNail: 'https://picsum.photos/200/300?image=122',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+      ],
+      top_collections: [
+        {
+          id: '14',
+          thumbNail: 'https://picsum.photos/200/300?image=126',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '15',
+          thumbNail: 'https://picsum.photos/200/300?image=158',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '16',
+          thumbNail: 'https://picsum.photos/200/300?image=320',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '17',
+          thumbNail: 'https://picsum.photos/200/300?image=17',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '18',
+          thumbNail: 'https://picsum.photos/200/300?image=23',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '19',
+          thumbNail: 'https://picsum.photos/200/300?image=72',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+        {
+          id: '20',
+          thumbNail: 'https://picsum.photos/200/300?image=2',
+          name: 'qwerty',
+          genre: 'fantacy',
+        },
+      ],
+    };
+  }
+  renderCardData () {
+    return this.state.data.cards.map (card => (
+      <Card key={card.id} card={card} />
+    ));
+  }
+  renderRecentTrendsData () {}
+  renderTopCollectionsData () {}
+
   render () {
     return (
       <SafeAreaView style={{flex: 1}}>
 
         <View style={styles.container}>
-          <View style={[styles.titleBarStyle, {marginTop: 12,paddingBottom:12}]}>
+          <View
+            style={[styles.titleBarStyle, {marginTop: 12, paddingBottom: 12}]}
+          >
             <Text style={styles.titleTextStyle}>Home Page</Text>
             <Icon name="ios-search" size={18} style={styles.searchIconStyle} />
           </View>
@@ -31,27 +172,22 @@ export default class HomeTab extends Component {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
-                <Category1
-                  imageUri={require ('../../assets/home.jpg')}
-                  name="Home"
-                />
-
-                <Category1
-                  imageUri={require ('../../assets/home.jpg')}
-                  name="Home"
-                />
-
-                <Category1
-                  imageUri={require ('../../assets/home.jpg')}
-                  name="Home"
-                />
+                {this.renderCardData ()}
 
               </ScrollView>
             </View>
 
-            <ListItem sectionTitle={'Recent Trends'} sectionSubTitle={'on Week'}/>
-            <ListItem sectionTitle={'Top Collection'} />
-            <ListItem sectionTitle={'New Collection'} />
+            <Section
+              sectionTitle={'Recent Trends'}
+              sectionSubTitle={'on Week'}
+              list={this.state.data.recent_trends}
+            />
+
+            <Section
+              sectionTitle={'Top Collections'}
+              list={this.state.data.top_collections}
+            />
+            
 
           </ScrollView>
 

@@ -1,23 +1,31 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {Dimensions,View, Text, StyleSheet, Image} from 'react-native';
+import {Dimensions, View, Text, StyleSheet, Image} from 'react-native';
 
-var deviceWidth = Dimensions.get('window').width;
+var deviceWidth = Dimensions.get ('window').width;
 
-class Category1 extends Component {
+class Card extends Component {
+  constructor (props) {
+    super (props);
+
+    this.state = {
+      item: this.props.card,
+    };
+  }
+
   render () {
     return (
       <View
         style={{
           height: 200,
-          width: deviceWidth/1.2,
+          width: deviceWidth / 1.2,
           marginRight: 20,
-          justifyContent:'flex-end',
+          justifyContent: 'flex-end',
         }}
       >
         <Image
-          source={this.props.imageUri}
+          source={{uri: this.state.item.cardImage}}
           style={{
             flex: 1,
             width: null,
@@ -27,13 +35,13 @@ class Category1 extends Component {
           }}
         />
         <View style={{flex: 1, padding: 10, position: 'absolute'}}>
-          <Text style={{color: 'white'}}>{this.props.name}</Text>
+          <Text style={{color: 'white'}}>{this.state.item.cardName}</Text>
         </View>
       </View>
     );
   }
 }
-export default Category1;
+export default Card;
 
 const styles = StyleSheet.create ({
   container: {

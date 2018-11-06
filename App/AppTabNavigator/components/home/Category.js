@@ -1,21 +1,28 @@
 import React, {Component} from 'react';
-import {Dimensions,View, Text, StyleSheet, Image} from 'react-native';
-
-var deviceWidth = Dimensions.get('window').width;
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 class Category extends Component {
+
+  constructor (props) {
+    super (props);
+
+    this.state = {
+      item: this.props.data,
+    };
+  }
+
   render () {
     return (
       <View
         style={{
-          height: deviceWidth/2,
+          height: 180,
           width: 100,
           marginRight: 20,
         }}
       >
         <View style={{flex: 2}}>
           <Image
-            source={this.props.imageUri}
+            source={{uri: this.state.item.thumbNail}}
             style={{
               flex: 1,
               width: null,
@@ -26,7 +33,7 @@ class Category extends Component {
           />
         </View>
         <View style={{flex: 1, paddingLeft: 10, paddingTop: 10}}>
-          <Text>{this.props.name}</Text>
+          <Text>{this.state.item.name}</Text>
         </View>
       </View>
     );
