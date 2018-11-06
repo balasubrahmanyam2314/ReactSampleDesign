@@ -19,7 +19,7 @@ class Card extends Component {
       <View
         style={{
           height: 200,
-          width: deviceWidth / 1.2,
+          width: deviceWidth * 0.8,
           marginRight: 20,
           justifyContent: 'flex-end',
         }}
@@ -35,7 +35,9 @@ class Card extends Component {
           }}
         />
         <View style={{flex: 1, padding: 10, position: 'absolute'}}>
-          <Text style={{color: 'white'}}>{this.state.item.cardName}</Text>
+          <Text style={{color: 'white'}} numberOfLines={1} ellipsizeMode="tail">
+            {this.state.item.cardName}
+          </Text>
         </View>
       </View>
     );

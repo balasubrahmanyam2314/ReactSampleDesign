@@ -19,6 +19,7 @@ export default class HomeTab extends Component<Props> {
     super ();
     this.state = {
       data: {},
+      key: [],
     };
 
     // Set dummy data for result
@@ -59,7 +60,7 @@ export default class HomeTab extends Component<Props> {
         {
           id: '7',
           thumbNail: 'https://picsum.photos/200/300?image=12',
-          name: 'qwerty',
+          name: 'fssd sdfsd sdfsdfws',
           genre: 'fantacy',
         },
         {
@@ -144,14 +145,24 @@ export default class HomeTab extends Component<Props> {
         },
       ],
     };
+
+    this.state.keys = ['cards', 'recent_trends', 'top_collections'];
   }
   renderCardData () {
     return this.state.data.cards.map (card => (
       <Card key={card.id} card={card} />
     ));
   }
-  renderRecentTrendsData () {}
-  renderTopCollectionsData () {}
+
+  renderData () {
+    let values = this.state.keys.map (el => this.state.data[el]);
+    console.log (values);
+
+    return values.map(value =>(
+      <Section sectionTitle={'Recent Trends'} list={value} />
+    ));
+    
+  }
 
   render () {
     return (
@@ -177,17 +188,7 @@ export default class HomeTab extends Component<Props> {
               </ScrollView>
             </View>
 
-            <Section
-              sectionTitle={'Recent Trends'}
-              sectionSubTitle={'on Week'}
-              list={this.state.data.recent_trends}
-            />
-
-            <Section
-              sectionTitle={'Top Collections'}
-              list={this.state.data.top_collections}
-            />
-            
+            {this.renderData ()}
 
           </ScrollView>
 

@@ -27,7 +27,7 @@ export default class ExploreTab extends Component {
           </View>
         </View>
 
-        <TouchableOpacity style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row'}}>
 
           <Image
             source={require ('../../assets/home.jpg')}
@@ -40,7 +40,7 @@ export default class ExploreTab extends Component {
           />
 
           <View style={{marginLeft: 12,justifyContent:'center'}}>
-            <Text>wefnweinfwnegiwnig</Text>
+            <Text style={{color:'#000000',fontWeight:'400',fontSize:20}}>wefnweinfwnegiwnig</Text>
             <Text>
               efq ejknfgqwekgw
             </Text>
@@ -49,7 +49,7 @@ export default class ExploreTab extends Component {
               eg wkegkwmekgmkewg wegw
             </Text>
           </View>
-        </TouchableOpacity>
+        </View>
       </SafeAreaView>
     );
   }

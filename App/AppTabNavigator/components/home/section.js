@@ -43,7 +43,7 @@ class Section extends Component {
           <Icon name="ios-arrow-dropright" size={25} style={{padding: 10}} />
         </View>
 
-        <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{}}>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
 
             {this.renderItem ()}
